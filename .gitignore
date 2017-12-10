@@ -1,0 +1,9 @@
+build/
+.pub/
+.vscode/
+
+.pubspec.lock
+.packages
+
+bin/key_storage.dart
+test/key_storage.dart

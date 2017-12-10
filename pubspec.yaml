@@ -1,0 +1,16 @@
+name: lr_twitter_client
+description: light test twitter client
+author: Laboratory Ray <oleg.timofeev20@gmail.com>
+version: 0.0.1
+
+dependencies:
+  http: "^0.11.3+16"
+  crypto: "^2.0.2+1"
+  intl: "^0.15.2"
+    # lr_mongo_collection:  
+    #     git:
+    #         url: https://github.com/laboratory-rat/lr_mongo_collection
+    #         rel: master
+
+dev_dependencies:
+  test: "^0.12.29"
