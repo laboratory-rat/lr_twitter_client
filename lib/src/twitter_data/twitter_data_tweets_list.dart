@@ -1,5 +1,5 @@
 import 'i_twitter_data_base.dart';
-import 'twetter_data_search_metadata.dart';
+import 'twitter_data_search_metadata.dart';
 import 'twitter_data_tweet.dart';
 
 class TwitterDataTweetsList extends ITwitterDataBase {
