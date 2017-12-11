@@ -48,7 +48,7 @@ class LrTwitterClient {
     return map;
   }
 
-  LrTwitterClient(this.key, this.secret, [String apiVersion]) {
+  LrTwitterClient.fromApp(this.key, this.secret, [String apiVersion]) {
     _url = new ApiUrl(apiVersion);
 
     search = new LrTwitterSearch(this);
@@ -58,12 +58,11 @@ class LrTwitterClient {
     var response = await http.post(url.oauth, body: 'grant_type=client_credentials', headers: headersAuth);
 
     var result = new LrTwitterResponse<TwitterDataToken>.fromHttp(response);
-    if(result.isSuccess){
+    if (result.isSuccess) {
       token = result.response;
       return token;
     }
 
     return null;
   }
-
 }

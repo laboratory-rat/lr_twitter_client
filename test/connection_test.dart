@@ -6,7 +6,7 @@ import 'key_storage.dart' as storage;
 // create key storage or just input here key and secret from your app
 
 main() {
-  var client = new LrTwitterClient(storage.key, storage.secret);
+  var client = new LrTwitterClient.fromApp(storage.key, storage.secret);
 
   // group('Connection', () {
   //   test('simple', () async {
