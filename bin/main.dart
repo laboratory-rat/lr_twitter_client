@@ -5,9 +5,9 @@ import 'key_storage.dart' as storage;
 
 Future main() async{
     var client = new LrTwitterClient.fromApp(storage.key, storage.secret);
-
     await client.getToken();
-    var response = await client.search.tweets('@neural_machine', count: 2);
 
-    print(response.response.statuses[0].created_at_parsed);
+    var response = await client.status.userTimelineByName('@neural_machine', count: 10, excludeReplies: false, trimUser: false, includeRts: true);
+    print(response);
+
 }

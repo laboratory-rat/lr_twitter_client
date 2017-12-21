@@ -27,8 +27,8 @@ class TwitterDataTweet extends ITwitterDataBase {
 
   String in_reply_to_user_id_str;
   String in_reply_to_status_id_str;
-  String in_reply_to_user_id;
-  String in_reply_to_status_id;
+  int in_reply_to_user_id;
+  int in_reply_to_status_id;
   String in_reply_to_screen_name;
 
   TwitterDataMetadata metadata;
@@ -112,6 +112,8 @@ class TwitterDataEntities extends ITwitterDataBase {
 
   @override
   void decode(Map map) {
+    if (map == null) return;
+
     url = new TwitterDataEntitiesUrl();
     if (map.containsKey('url')) url.decode(map['url']);
 
@@ -200,8 +202,10 @@ class TwitterDataMetadata extends ITwitterDataBase {
 
   @override
   void decode(Map map) {
-    iso_language_code = map['iso_language_code'];
-    result_type = map['result_type'];
+    if (map == null) return;
+
+    if (map.containsKey('iso_language_code')) iso_language_code = map['iso_language_code'];
+    if (map.containsKey('result_type')) result_type = map['result_type'];
   }
 
   @override

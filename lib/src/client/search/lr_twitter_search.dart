@@ -27,4 +27,5 @@ class LrTwitterSearch extends LrTwitterComponent {
     var httpResponse = await http.get(url.searchTweets + url.encode(qq), headers: client.headers);
     return new LrTwitterResponse<TwitterDataTweetsList>.fromHttp(httpResponse);
   }
+
 }

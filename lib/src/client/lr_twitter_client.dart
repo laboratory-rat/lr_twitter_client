@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'search/lr_twitter_search.dart';
+import 'status/lr_twitter_status.dart';
 
 class LrTwitterClient {
   final String key;
@@ -19,6 +20,7 @@ class LrTwitterClient {
 
   // components
   LrTwitterSearch search;
+  LrTwitterStatus status;
 
   static const String appUserAgent = 'Lr dart twitter client v0.1';
 
@@ -52,6 +54,7 @@ class LrTwitterClient {
     _url = new ApiUrl(apiVersion);
 
     search = new LrTwitterSearch(this);
+    status = new LrTwitterStatus(this);
   }
 
   Future<TwitterDataToken> getToken() async {

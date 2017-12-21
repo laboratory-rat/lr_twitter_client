@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:mirrors';
 
 import 'i_twitter_data_base.dart';
@@ -7,6 +8,9 @@ class LrTwitterResponse<T extends ITwitterDataBase> {
   T response;
   LrTwitterResponseError error;
   String responseString;
+
+  List<T> responseList;
+  bool isList = false;
 
   int statucCode;
   bool get isSuccess => statucCode == 200;
@@ -28,6 +32,47 @@ class LrTwitterResponse<T extends ITwitterDataBase> {
       response = im.reflectee;
       response.decodeString(responseString);
     } else {
+      response = null;
+      error = new LrTwitterResponseError()..decodeString(responseString);
+    }
+  }
+}
+
+class LrTwitterResponseList<T extends ITwitterDataBase> {
+  List<T> response;
+  LrTwitterResponseError error;
+  String responseString;
+
+  List<T> responseList;
+  bool isList = false;
+
+  int statucCode;
+  bool get isSuccess => statucCode == 200;
+
+  Map<String, String> headers;
+  BaseRequest request;
+
+  LrTwitterResponseList();
+  LrTwitterResponseList.fromHttp(Response httpResponse) {
+    statucCode = httpResponse.statusCode;
+    responseString = httpResponse.body;
+
+    headers = httpResponse.headers;
+    request = httpResponse.request;
+
+    if (isSuccess) {
+      var list = JSON.decode(responseString);
+      response = new List<T>();
+
+      for (int i = 0; i < list.length; i++) {
+        ClassMirror c = reflectClass(T);
+        InstanceMirror im = c.newInstance(const Symbol(''), const []);
+        var r = im.reflectee;
+        r.decode(list[i]);
+        response.add(r);
+      }
+    } else {
+      response = null;
       error = new LrTwitterResponseError()..decodeString(responseString);
     }
   }

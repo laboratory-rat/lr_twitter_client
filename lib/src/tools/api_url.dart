@@ -31,4 +31,8 @@ class ApiUrl {
 
     // search
     String get searchTweets => [base, version, '/search/tweets.json'].join();
+
+    // status
+    String get statusUserTimeline => [base, version, '/statuses/user_timeline.json'].join();
+
 }
