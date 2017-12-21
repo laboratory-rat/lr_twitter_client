@@ -17,7 +17,7 @@ class TwitterDataTweet extends ITwitterDataBase {
   String geo;
   String coordinates;
 
-  String place;
+  TwitterDataPlace place;
   String source;
 
   bool favorited;
@@ -50,7 +50,9 @@ class TwitterDataTweet extends ITwitterDataBase {
     geo = map['geo'];
     coordinates = map['coordinates'];
 
-    place = map['place'];
+    if (map['place'] != null) {
+      place = new TwitterDataPlace()..decode(map['place']);
+    }
     source = map['source'];
 
     favorited = map['favorited'];
@@ -380,5 +382,41 @@ class TwitterDataUser extends ITwitterDataBase {
     map['show_all_inline_media'] = show_all_inline_media;
 
     return map;
+  }
+}
+
+class TwitterDataPlace extends ITwitterDataBase {
+  String id;
+  String url;
+  String place_type;
+  String name;
+  String full_name;
+  String country_code;
+  String country;
+
+  @override
+  void decode(Map map) {
+    id = map['id'];
+    url = map['url'];
+    place_type = map['place_type'];
+    name = map['name'];
+    full_name = map['full_name'];
+    country_code = map['country_code'];
+    country = map['country'];
+  }
+
+  @override
+  Map encode() {
+    var m = new Map();
+
+    m['id'] = id;
+    m['url'] = url;
+    m['place_type'] = place_type;
+    m['name'] = name;
+    m['full_name'] = full_name;
+    m['country_code'] = country_code;
+    m['country'] = country;
+
+    return m;
   }
 }

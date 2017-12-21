@@ -41,7 +41,6 @@ class LrTwitterStatus extends LrTwitterComponent {
 
     var httpResponse = await http.get(url.statusUserTimeline + url.encode(qq), headers: client.headers);
 
-    print(httpResponse.body);
     var response = new LrTwitterResponseList<TwitterDataTweet>.fromHttp(httpResponse);
     return response;
   }

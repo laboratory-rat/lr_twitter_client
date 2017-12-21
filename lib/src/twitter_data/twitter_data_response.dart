@@ -9,9 +9,6 @@ class LrTwitterResponse<T extends ITwitterDataBase> {
   LrTwitterResponseError error;
   String responseString;
 
-  List<T> responseList;
-  bool isList = false;
-
   int statucCode;
   bool get isSuccess => statucCode == 200;
 
